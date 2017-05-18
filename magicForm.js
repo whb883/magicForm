@@ -3,16 +3,16 @@
  * 【联系】whb883@sina.com
  * 【功能】:增加 统一按钮生效/禁用 写法
  * 【示例】: 生效: $(".example").effect();
- * 		   禁用: $(".example").uneffect();
+ * 		   禁用: $(".example").unEffect("bg_gray_btn","bg_blue_btn");
  */
 (function(jq) {
-	jq.fn.uneffect = function() {
+	jq.fn.unEffect = function(unEffectClass, effectClass) {
 		$(this).attr("disabled", true);
-		$(this).removeClass("blue_btn_bg").addClass("gray_bg_btn");
+		$(this).removeClass(effectClass).addClass(unEffectClass);
 	};
-	jq.fn.effect = function() {
+	jq.fn.effect = function(unEffectClass, effectClass) {
 		$(this).attr("disabled", false);
-		$(this).removeClass("gray_bg_btn").addClass("blue_btn_bg");
+		$(this).removeClass(unEffectClass).addClass(effectClass);
 	};
 })(jQuery);
 
