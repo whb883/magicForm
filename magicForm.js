@@ -84,8 +84,8 @@
  * 【功能】:form验证工具
  * 【示例】: 添加 $(".example").formValidate();
  * 		   验证通过true/不通过false 并弹窗错误信息
- * 【属性参数】: data-magicCheck 扫描的验证标识
- * 			  magic-validate-msg 验证不通过，弹框提示内容（可以不指定，则走默认提示，建议根据不同业务场景指定）
+ * 【属性参数】: data-magicCheck 扫描的验证标识 值为验证类型
+ * 			  magic-magicCheck-msg 验证不通过，弹框提示内容（可以不指定，则走默认提示，建议根据不同业务场景指定）
  * 			  data-magicCheck-focus 隐藏元素指定焦点元素属性，如果验证元素当前隐藏状态并且无指定焦点元素 则忽略校验
  * 			  data-magicCheck-result 验证结果标识，元素包含此标识 证明验证不通过
  * 【支持验证类型】:necessary/number/decimal/percent/mail/phone/postcode/carnumber/specailchar/not-equal，更多支持正在丰富中~~~
@@ -102,10 +102,10 @@
 			var _this_tagName = _this.prop('tagName');
 			var _this_check_type = _this.attr('data-magicCheck');
 			if(_this_tagName.toLocaleLowerCase()=='input') {
-				console.debug(_this.attr('name')+'magic-validate processing');
+				console.debug(_this.attr('name')+'magic-magicCheck processing');
 				//忽略验证情形过滤-----------
 				if(_this.is(':hidden') && !_this.attr('data-magicCheck-focus')) { //元素隐藏 并且 无焦点指向属性 跳过验证
-					console.debug(_this.attr('name')+'magic-validate ignore code 1');
+					console.debug(_this.attr('name')+'magic-magicCheck ignore code 1');
 					return true;
 				}
 				//忽略验证情形过滤 结束-------
@@ -169,8 +169,8 @@
 		});
 		
 		function checkFalse(_this, errMsg) {
-			if(!_this.attr('magic-validate-msg')) { //如果当前magic-validate-msg属性为空(说明用户没有定制，走默认错误信息输出)
-				_this.attr('magic-validate-msg', errMsg);
+			if(!_this.attr('magic-magicCheck-msg')) { //如果当前magic-magicCheck-msg属性为空(说明用户没有定制，走默认错误信息输出)
+				_this.attr('magic-magicCheck-msg', errMsg);
 			}
 			_this.attr('data-magicCheck-result',false);
 		}
@@ -178,10 +178,10 @@
 			_this.removeAttr('data-magicCheck-result');
 		}
 		
-		var firstErrObj = $('[magic-validate][data-magicCheck-result]:first');
+		var firstErrObj = $('[magic-magicCheck][data-magicCheck-result]:first');
 		if(firstErrObj && firstErrObj.length>0) {
-			var err_msg = firstErrObj.attr('magic-validate-msg');
-			if(err_msg){ //最后兜底验证是否包含magic-validate-msg
+			var err_msg = firstErrObj.attr('magic-magicCheck-msg');
+			if(err_msg){ //最后兜底验证是否包含magic-magicCheck-msg
 				alert(err_msg);
 			}
 			else {//兜底alert
