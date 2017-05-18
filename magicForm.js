@@ -196,6 +196,7 @@
 			}
 			return false;
 		}
+		return true;
 		
 	};
 })(jQuery);
